@@ -93,6 +93,20 @@ export default function Game() {
 
   const sortedMoves = sortAscending ? moves : moves.slice().reverse();
 
+  const handleSquareClick = (i) => {
+    const location = i;
+    if (currentSquares[i] || calculateWinner(currentSquares)) {
+      return;
+    }
+    const nextSquares = currentSquares.slice();
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    handlePlay(nextSquares, location);
+  };
+
   return (
     <div className="game">
       <div className="game-board">
